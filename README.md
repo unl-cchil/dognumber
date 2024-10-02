@@ -19,7 +19,7 @@ If you use any of these materials, please cite:
 
 > de Boer, H., Fitzpatrick, H., Wolff, L.M., Gatesy-Davis, A., &
 > Stevens, J.R. (2024). Do dogs follow Weber’s Law? The role of ratio
-> and difference in quantity preference.
+> and difference in quantity preference. [doi:10.31234/osf.io/rn8gq](https://doi.org/10.31234/osf.io/rn8gq)
 
 ## Summary
 
@@ -140,14 +140,13 @@ name
 description
 </td>
 <td>
-<code itemprop="description">The dataset from the paper
-<a href="https://doi.org/????">Do dogs follow Weber’s Law? The role of
+<code itemprop="description">The dataset from the paper <a href="https://doi.org/10.31234/osf.io/rn8gq">Do dogs follow Weber’s Law? The role of
 ratio and difference in quantity preference</a>. This study conducted 10
 sessions of a food quantity preference task with 7 dogs at Uplifting
 Paws dog daycare center in Lincoln, Nebraska from March-July 2023.
-Within each session dogs experienced one trial of each of nine numerical
-pairs varying in their numerical difference (large-small) and ratio
-(small/large) and two trials of a \[1,6\] ‘washout’ pair. In addition,
+Within each session dogs experienced one trial of each of nine 
+numerical pairs varying in their numerical difference (large-small) and 
+ratio (small/large) and two trials of a [1,6] ‘washout’ pair. In addition,
 the dataset includes data from [Rivas-Blanco et
 al. (2020)](https://doi.org/10.3389/fpsyg.2020.573317) on dog and wolf
 quantity discrimination. In the data file, each row represents the
@@ -176,7 +175,7 @@ sameAs
 citation
 </td>
 <td>
-<code itemprop="citation">https://doi.org/???</code>
+<code itemprop="citation">https://doi.org/10.31234/osf.io/rn8gq</code>
 </td>
 </tr>
 <tr>
