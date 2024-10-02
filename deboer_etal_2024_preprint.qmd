@@ -1,0 +1,338 @@
+---
+title: "Do dogs follow Weber's Law? The role of ratio and difference in quantity preference"
+shorttitle: "The role of ratio and difference in dog quantity preference"
+author:
+  - name: Hunter DeBoer
+    orcid: 0000-0003-1635-1908
+    affiliations:
+      - name: "University of Nebraska-Lincoln"
+        department: Department of Psychology, Center for Brain, Biology & Behavior
+        city: Lincoln
+        region: NE
+        country: USA
+        postal-code: 68588
+        id: unl
+    roles:
+      - data curation
+      - investigation
+      - methodology
+      - writing
+      - editing
+  - name: Hannah Fitzpatrick
+    orcid: 0000-0003-3019-6342
+    affiliations:
+      - ref: unl
+    roles:
+      - investigation
+      - methodology
+      - project administration
+      - writing
+      - editing
+  - name: London Wolff
+    orcid: 0000-0001-8359-2619
+    affiliations:
+      - ref: unl
+    roles:
+      - investigation
+      - methodology
+      - supervision
+      - editing
+  - name: Anwyn Gatesy-Davis
+    orcid: 0009-0006-7254-4332
+    affiliations:
+      - ref: unl
+    roles:
+      - investigation
+      - editing
+  - name: Jeffrey R. Stevens
+    corresponding: true
+    orcid: 0000-0003-2375-1360
+    email: jeffrey.r.stevens@gmail.com
+    # Roles are optional. 
+    # Select from the CRediT: Contributor Roles Taxonomy https://credit.niso.org/
+    # conceptualization, data curation, formal Analysis, funding acquisition, investigation, 
+    # methodology, project administration, resources, software, supervision, validation, 
+    # visualization, writing, editing
+    roles:
+      - conceptualization
+      - data curation
+      - formal analysis
+      - funding acquisition
+      - methodology
+      - project administration
+      - resources
+      - software
+      - supervision
+      - validation
+      - visualization
+      - writing
+      - editing
+    affiliations:
+      - ref: unl
+author-note:
+  status-changes: 
+    affiliation-change: "**This preprint has not been peer reviewed.** Version: `r Sys.Date()`."
+    deceased: ~
+  disclosures:
+    study-registration: This study was pre-registered at AsPredicted (<https://aspredicted.org/MX2_6L2>).
+    data-sharing: All data and analysis materials are available at the Open Science Framework (<https://osf.io/tp8ah/>).
+    related-report: ~
+    conflict-of-interest: ~
+    financial-support: This study was funded in part by the National Science Foundation (NSF-1658837) and a University of Nebraska-Lincoln Maude Hammond Fling Faculty Research Fellowship.
+    gratitude: We are grateful to Maya Lashley, Ashley Llewellyn, Lauryn Rivale, and Yasmin Worth for assistance in testing the dogs. We thank Uplifting Paws and the dog owners for allowing us to work their dogs.
+    authorship-agreements: ~
+
+floatsintext: true
+numbered-lines: false
+
+abstract: "Weber's Law states that the ability to distinguish different stimuli depends on the relative magnitudes of those stimuli. When applied to quantity judgments, this means that the numerical ratio between two quantities (small amount / large amount) will underlie the ability to distinguish the quantities. Ratio-dependent quantification is a hallmark of Weber's Law that has been demonstrated across a range of species, including dogs. However, other factors such as numerical difference (large amount - small amount) are confounded with ratio but would not support Weber's Law. Most work on dog quantification abilities has only considered ratio and not difference. Here, we offer dogs a food quantity preference task where we varied both difference and ratio in quantity pairs to investigate which of these factors influences preferences. To address this, dogs could choose to eat one of two plates of food with different quantities of treats on them. We found that, when analyzed separately, both difference and ratio predicted whether the dogs chose the larger quantity of treats. However, when analyzed together, only difference predicted choice when controlling for ratio. This finding does not support the ratio-dependence required for Weber's Law, raising questions about its importance for quantity preference tasks in dogs."
+keywords: [dog, numerical difference, numerical ratio, quantity, Weber's Law]
+wordcount: "7000"
+bibliography: ["bibliography.bib", "r-references.bib"]
+csl: deboer_etal_2024.csl
+format:
+  apaquarto-docx: default
+  # apaquarto-html: default
+  # #apaquarto-pdf:
+  #   #documentmode: man
+---
+```{r}
+#| label: setup
+#| include: false
+
+library(flextable)
+library(here)
+library(knitr)
+library(papaja)
+library(quarto)
+
+source("deboer_etal_2024_rcode.R")
+
+r_refs("docs/r-references.bib")
+my_citations <- cite_r(file = "docs/r-references.bib", pkgs = c("BayesFactor", "bayestestR", "cocoon", "detritus", "flextable", "ggrepel", "here", "labelled", "lme4", "papaja", "patchwork", "performance", "scales", "tidyverse"), withhold = FALSE)
+
+```
+
+# Introduction
+
+Imagine a dog is offered bowls with two different amounts of food. Will it choose the bowl with more food? Can it distinguish between the quantities, or will it make a random choice? Quantifying items in its environment is crucial to the survival of any animal when it comes to hunting, mating, and fighting or fleeing [@Nieder.2020]. Yet, it is not clear exactly how animals quantify items in their environment. The aim of this study is to investigate what factors dogs use when judging different quantities of food.
+
+A key theory applied to animal quantitative judgments is Weber’s Law, which states that "the ability to tell the difference in intensity between a pair of physical stimuli depend[s] on the ratio of their intensities" [@Algom.2021]. Though Weber’s Law applies to a range of stimulus properties (time, frequency, weight), for detecting differences between quantities of items, it relies on _numerical ratio_, or the ratio of the smaller and larger quantities. For instance, the numerical pairs of [1, 2], [2, 4], and [4, 8] all have ratios of 0.5. As ratios get smaller, the quantities become more dissimilar, and differences become easier to detect. A large range of species have shown ratio dependence in quantification tasks [@Beran.2001; @Potrich.etal.2015; @Ditz.Nieder.2016; @Lucon-Xiccato.etal.2018; @dEttorre.etal.2021; @Lin.etal.2021]. Researchers typically interpreted ratio effects on quantitative judgments as evidence supporting Weber's Law.
+
+In contrast to ratio, animals might quantify based on _numerical difference_ (also called distance or disparity), or the mathematical difference between two values. For example, pairs [1, 2], [2, 3], and [4, 5] each have a difference of 1.  According to Weber's Law, when holding ratio constant, difference should not influence quantity judgments---only ratio should matter. Nevertheless, we see evidence for numerical difference influencing these judgments [@Brannon.Terrace.2000; @Beran.2001; @Nieder.etal.2002]. Critically, difference and ratio are confounded (as difference increases, ratio decreases), so researchers must statistically control for both of them to establish whether they have independent effects on performance. Across several species, we see both difference and ratio accounting for performance independently [@Agrillo.etal.2007; @Hanus.Call.2007; @Kelly.2016]. 
+
+Our aim in this study was to investigate the role of difference and ratio in domestic dogs' (_Canis familiaris_) quantity judgments. Like other species, previous research has shown ratio dependence in dogs [@Ward.Smuts.2007; @Baker.etal.2012; @MilettoPetrazzini.Wynne.2016; @Aulet.etal.2019; @Rivas-Blanco.etal.2020]. However, the only study to also consider numerical difference was Ward and Smuts, and they did not investigate each factor's independent contributions to performance. Therefore, we do not have any evidence regarding the relative contribution of difference and ratio in dog quantity judgments.
+
+To address this gap, we conducted a food quantity preference task with dogs, in which subjects were shown two different quantities of treats and could choose one to consume. If dogs can discriminate between the two quantities and prefer more to fewer treats, they should choose the larger quantity. We pre-registered our study to test two hypotheses: (1) dogs will prefer the larger quantities more when the ratios between options are smaller and differences are larger, and (2) dogs' quantity preferences will depend on difference independently of ratio. After analyzing our data, we conducted exploratory analyses on previously published dog quantity data sets to further investigate the independent roles of difference and ratio.
+
+
+# Method
+
+## Participants
+
+We recruited `r length(unique(our_data$dog_id))` dogs from the dog daycare Uplifting Paws in Lincoln, Nebraska from March-July 2023. `r num2words(length(unique(our_data$dog_id)) - length(complete_subjects), capital = TRUE)` dogs were excluded due to an insufficient number of completed sessions, leaving  `r length(complete_subjects)` dogs that were included in the analyses. The subjects were `r format_num(demographics$dog_female)`% female (n=`r demographics$dog_female * length(unique(clean_data$dog_id))/100`) and `r format_num(demographics$dog_neutered)`% were spayed or neutered. Their breed composition included two goldendoodles, one golden retriever, one rough-haired collie, one miniature pinscher mix, one dachshund mix, and one yellow Labrador retriever mix. The average age for subjects was `r format_num(demographics$dog_age_mean)`±`r format_num(demographics$dog_age_sd)` (mean ± standard deviation) years old, ranging from `r min(clean_data$dog_age)`-`r max(clean_data$dog_age)` years old.
+
+## Materials
+
+We used Pet Botanics Soft & Chewy Beef Flavor Training Rewards (1 cm high and wide, 0.8 g) as treats for all dogs except one dog who needed low-fat treats due to a medical reason. This study also used two 14 cm diameter beige plates. We recorded sessions with a HERO9 Black GoPro camera on a tripod.
+
+The study took place in a 9 ⨉ 4.5 m sectioned-off portion of an open playroom at the dog daycare location. Other dogs could not enter the testing area during data collection but were occasionally present in other areas of the room. 
+
+## Procedure
+
+### Pairs
+
+We used ten different pairs of treats per session to collect data. The nine pairs presented in the experimental portion of the study represented three sets of ratios, including numerical differences of one, two, four, and six (@tbl-pairs). During testing, we grouped pairs into three sets of ratios (1:3, 1:2, and 2:3 ratio pairs). Subjects completed the sets of ratios in order from the smallest ratio set to the largest ratio (1:3, then 1:2, then 2:3) with randomized pair ordering within each ratio set. We placed a [1, 6] pair in between each set because it was an easy discrimination and kept dogs engaged.
+
+```{r}
+#| label: tbl-pairs
+#| tbl-cap: Numerical Pairs
+data.frame(ratio = c("1:3", "1:2", "2:3"), d1 = c(NA, "[1, 2]", "[2, 3]"), d2 = c("[1, 3]", "[2, 4]", "[4, 6]"), d4 = c("[2, 6]", "[4, 8]", "[8, 12]"), d6 = c("[3, 9]", NA, NA)) |> 
+  flextable() |> 
+  set_header_labels(ratio = "Ratio", d1 = "1", d2 = "2", d4 = "4", d6 = "6") |> 
+  add_header_row(values = c(NA, "Difference"), colwidths = c(1, 4)) |> 
+  #add_footer_lines("Table used with permission under a CC-BY 4.0 license: DeBoer et al. (2024); available at https://doi.org//.") |> 
+  align(align = "center", part = "all") |>
+  bold(part = "header") |>
+  font(fontname = "Times", part = "all")
+```
+
+
+### Experimental Setup
+
+Research assistants played the role of handler or experimenter during the experiment. The handler leashed the dog at the beginning of the study and used the leash to assist with positioning and retrieving the dog between trials. The handler sat in a chair approximately 1.5 m in front of and facing the experimenter (@fig-setup). Before each trial, the handler positioned the dog to sit or stand directly in front of them, between the handler and the experimenter. From this starting location, both plates of treats were easily visible and equidistant to the dog. The experimenter was seated on the floor, facing toward the dog. The experimenter placed the two plates in front of them, 0.5 m apart (from the center of each plate) and 1.25 m from the dog. The experimenter placed an opaque plastic occluder between the plates and the dog, obscuring the plates from the dog’s view during set up. 
+
+```{r}
+#| label: fig-setup
+#| fig-cap: Experimental Set-Up
+#| 
+
+knitr::include_graphics("figures/number_setup.png")
+```
+
+### General Procedure
+
+Before each trial, the handler placed the dog in the starting location, and the experimenter placed the designated number of treats on each plate behind the occluder. Treats were evenly distributed near the center of the plates roughly 2.5 cm apart.  Then the experimenter called the dog’s name to get their attention and made eye contact with the dog to make sure they were engaged. Next, the experimenter broke eye contact and removed the occluder. The experimenter then tapped both plates simultaneously to attract the dog’s attention, looked down, and sat still with their hands on their knees. After approximately 5 s, the experimenter signaled the handler by saying “now” in a neutral tone, and the experimenter then gave a release cue to the dog by saying “okay” in a positive tone and releasing the leash. The release command was given again after several seconds if the dog failed to move or showed no visible reaction to the command.
+
+A choice was defined as the dog touching one of the plates and/or the treats on a plate. As soon as the dog chose one plate, the experimenter immediately removed the other plate. Once the dog had consumed all the treats on the chosen plate, the experimenter put the occluder back in place, and the handler recalled the dog. The handler praised the dog upon recall independent of their choice. The experimenter never praised the dog. If the dog did not make a choice after 20 s, the outcome was denoted as No Choice, and the trial was repeated.
+
+### Warm-ups
+
+Before data collection, the dogs completed two warm-up blocks to determine whether they were capable of completing the data collection session. For Warm-up 1, there were two [0, 2] pairs, and for Warm-up 2, there were two [1, 6] pairs. The side with the larger number of treats was randomized for the first trial. The larger number in the next trial was offered on the alternate side, so the dog experienced the larger number on both their left and right sides.
+
+We repeated this procedure for each warm-up trial. To pass each warm-up, the dog needed to choose the larger number of each pair twice in a row, once on both their left and right sides. After completing both warm-ups, the dog moved on to the experimental portion of the study. 
+
+### Experimental Trials
+
+The experimental trials followed the same procedure as the warm-ups but with different numerical pairs: ten treat pairs (nine experimental plus [1, 6]) (see @tbl-pairs). Each session consisted of at least four warm-up pairs, one trial of each of the nine experimental pairs, and two [1, 6] pairs. We required each dog to complete 10 sessions. If a dog failed to complete any of the 10 sessions for any reason (see Abort Criteria), they were required to complete make-up sessions later.
+
+### De-side Bias
+
+During the experimental trials, if the dog chose the same side five consecutive times (regardless of which side was correct), the experimenter presented the dog with two consecutive [1, 6] trials. Both times, the experimenter put the larger number of treats on the side that the dog was avoiding. If the dog successfully chose the larger side both times, the experimental trials resumed. If the dog chose the smaller side once, the [1, 6] pair was repeated two more times. If the dog chose the smaller side twice in a row, the experimenter presented two [0, 2] trials. If the dog chose larger two times in a row, they moved back up to the [1, 6] trials. If the dog chose the empty plate twice in a row for the [0, 2] pair, or did not make two consecutive correct choices after 10 total trials, the dog failed the session. 
+
+### Abort Criteria
+Abort criteria were used to determine when experimental sessions would be terminated before session completion. A dog could meet the abort criteria in one of two ways. First, the dog could fail the warm-ups. If the dog could not pass warm-ups within 10 total tries or made No Choice twice in a row, the session was aborted. 
+
+Second, the dog could fail the experimental trials. If the dog made No Choice twice during the experimental trials or failed the de-side bias protocol, the session was aborted (see De-side Bias). If a session was aborted, we began a new session on the next available day.
+
+
+## Inter-Rater Reliability
+
+All data were live coded during sessions and also video recorded. An independent coder unfamiliar with the hypotheses recoded choices from video recordings for `r format_num(sum(!is.na(our_data$recode_side)) / nrow(our_data) * 100)`% of the trials. We calculated Cohen’s kappa to assess the inter-rater reliability of the binary response variable for the side of choice (right or left). The reliability was very good with `r format_num(agreement_recode * 100)`% agreement ($\kappa$ = `r format_num(kappa_recode$kappa, 2)`, 95% CI [`r format_num(kappa_recode$confid[1], 2)`, `r format_num(kappa_recode$confid[5], 2)`], N = `r kappa_recode$n.obs`).
+
+
+## Data Analysis
+We used `r my_citations` for our analyses. The manuscript was created using  _quarto_ [Version `r packageVersion("quarto")`, @R-quarto] and the _apaquarto_ Quarto extension [@R-apaquarto]. Data, analysis scripts, and reproducible research materials are available at the Open Science Framework (<https://osf.io/tp8ah/>). This study was pre-registered at <https://aspredicted.org/MX2_6L2>.
+
+We draw inferences based on Bayes factors because they offer bidirectional information about evidence supporting both the alternative (H~1~) and the null (H~0~) hypotheses. Bayes factors provide the ratio of evidence for H~1~ over evidence for H~0~ [@Wagenmakers.2007]. Therefore, a Bayes factor of 3 (_BF_~10~=3) indicates three times more evidence for H~1~ than H~0~, whereas a Bayes factor of 1/3 (the reciprocal of 3) indicates 3 times more evidence for H~0~ than H~1~. We interpret Bayes factors based on @Wagenmakers.etal.2018, where a _BF_~10~ > 3 is considered sufficient evidence for the alternative hypothesis, _BF_~10~ < 1/3 is considered sufficient evidence for the null hypothesis, and 1/3 < _BF_~10~ < 3 indicate neither hypothesis has evidence supporting it (suggesting the sample size is too small to draw conclusions).
+
+Prior to analysis, we transformed the left and right choice variable from each trial into a binary outcome, with 1 representing a choice for the larger option and 0 representing a choice for the smaller option. Because the outcome variable was binary, we used generalized linear models with a binomial error distribution (logistic regression) for our analyses. We also created variables with the numerical difference between each numerical pair by subtracting the larger number from the smaller (6 - 1 = 5), as well as created the ratio by dividing the smaller by the larger number (1/6 = 0.17).
+
+### Hypothesis 1: Separate effects of difference and ratio
+
+For Hypothesis 1, we expect that dogs will prefer the larger quantities more when the numerical differences between options are larger and ratios are smaller. To test this, we used model selection to test which logistic regression models performed best with our data. All models included choice for larger as the binary outcome variable and subject as a random effect. The null model included no predictors (`choice ~ 1 + (1 | subject)`), the difference-only model included only difference as a predictor (`choice ~ difference + (1 | subject)`), and the ratio-only model only included ratio (`choice ~ ratio + (1 | subject)`). Support for the hypothesis would require Bayes factors greater than 3 for both the difference-only and ratio-only models. 
+Using the `test_performance()` function from the _performance_ package [@R-performance], we calculated Bayes factors for the difference and ratio models with the null model as the reference model. The `test_performance()` function estimates Bayes factors from the Bayesian Information Criterion (BIC) value, which assumes a unit information prior.
+
+### Hypothesis 2: Difference and ratio effects independent of each other
+
+For Hypothesis 2, we expect that dogs' quantity preferences will depend on difference independently of ratio. To test this, we included both difference and ratio in the same multiple regression (`choice ~ difference + ratio + (1 | subject)`) and compared it to the difference-only model and the ratio-only model using Bayes factors. With both predictors in the same model, this yields a model of the effect of difference controlling for the effect of ratio and vice versa. Comparing, for example, the combined model to the difference-only model asks whether ratio has any effect above and beyond difference. A Bayes factor greater than 3 for the combined difference and ratio model over the difference-only model and the ratio-only model would support this hypothesis.
+
+
+# Results
+
+Overall, the subjects chose the larger amount in `r format_num(mean(clean_data$choice, na.rm = TRUE) * 100, 1)`% of trials. Choice for the larger amount increased from `r format_num(subject_block_wsci[subject_block_wsci$block == 1, ]$mean * 100, 1)`% to `r format_num(subject_block_wsci[subject_block_wsci$block == 10, ]$mean * 100, 1)`% from the first to last session, with a plateau in performance starting around session four (@fig-acquisition).
+
+```{r}
+#| label: fig-acquisition
+#| fig-cap: "Preference for Larger Quantity over Sessions"
+#| apa-note: "Dots represent overall mean percent choice for larger amount, error bars represent within-subject 95% confidence intervals, and lines represent individual subject mean values. "
+
+knitr::include_graphics("figures/acquisition.png")
+```
+
+## Pre-registered Results
+
+To test Hypothesis 1's suggestion that both difference and ratio influence preferences for larger amounts, we conducted comparisons of the difference-only model and the ratio-only model to a null model. We found extremely strong evidence for difference influencing preference ([@fig-diffratio]A, `r format_bf(models_bfs[models_bfs$Name == "model_diff", "BF"], cutoff = 10000)`) and strong evidence for ratio influencing preference ([@fig-diffratio]B, `r format_bf(models_bfs[models_bfs$Name == "model_ratio", "BF"])`), supporting Hypothesis 1.
+
+```{r}
+#| label: fig-diffratio
+#| fig-cap: "Preference for Larger Quantity as a Function of Difference and Ratio"
+#| apa-note: "Dots represent overall mean percent choice for larger amount, error bars represent within-subject 95% confidence intervals, and lines represent individual subject mean values. "
+knitr::include_graphics("figures/ratio_diff.png")
+```
+
+Hypothesis 2 suggests that difference will influence preferences independent of ratio. That is, difference and ratio are correlated, but difference will have an effect above and beyond ratio ([@fig-diffratio]C). To test this, we compared a model with both difference and ratio included to the difference-only and ratio-only models. Surprisingly, adding difference to the ratio-only model provided a much better performance (`r format_bf(ratio_bf[ratio_bf$Name == "diff_ratio_model1", "BF"])`), but adding ratio to the difference-only model produced worse performance (`r format_bf(diff_bf[diff_bf$Name == "diff_ratio_model1", "BF"])`). Thus, Hypothesis 2 was supported (difference influenced preferences independent of ratio), but the reverse was not true (ratio did not influence preferences independent of difference).
+
+
+## Exploratory Results
+
+The pre-registered analysis indicated that adding difference improved model performance, but adding ratio did not. We conducted additional analyses to explore this relationship. First, we added a fourth model that included the interaction between difference and ratio and compared the four models against the null model to see which one performed best. The difference-only model performed best (@tbl-models), suggesting that including ratio did not improve model performance. 
+
+```{r}
+#| label: tbl-models
+#| tbl-cap: "Model Comparison for Difference and Ratio Effects on Choice"
+#| 
+models_bfs |> 
+  mutate(Model = sub("dog_id", "subject", Formula),
+         BIC = format_num(BIC),
+         bf = cocoon::format_bf(BF, cutoff = 10000, label = ""),
+         bf = sub("NA", "", bf)) |> 
+  select(Model, BIC, BF = bf) |> 
+  flextable() |> 
+  #add_footer_lines("Table used with permission under a CC-BY 4.0 license: DeBoer et al. (2024); available at https://doi.org//.") |> 
+  width(j = 1, 4) |> 
+  align(j = c(2, 3), align = "right", part = "header") |> 
+  align(j = c(2, 3), align = "right") |> 
+  bold(i = 1, part = "header") |> 
+  font(fontname = "Times", part = "header") |> 
+  font(j = 1, fontname = "monospace", part = "body") |> 
+  font(j = c(2, 3), fontname = "Times")
+```
+
+<!-- We also conducted a new analysis where we first ran model selection to find the best fitting random effects model with no fixed effects. We compared an intercept only model, subject as random effect, numerical pair as random effect, and both subject and numerical pair as random effects. Surprisingly, the model with only numerical pairs as a random effect fit best, so we used this as the reference model for the fixed effects analysis and included numerical pairs as a random effect in the fixed effect model comparison. We compared difference-only, ratio-only, difference and ratio main effects, and difference and ratio with interaction (with numerical pairs as a random effect). Bayes factors indicated that the difference-only model performed best (`r format_bf(diff_ratio_comparison$best_model$bf)`) and no other model performed better than the null model. Therefore, the subjects' preferences seem to be driven by difference rather than ratio in this data set. -->
+
+Because difference and ratio are correlated and linear regressions do not function well under collinearity, we conducted an additional analysis that investigated whether difference drove choice within each of the three ratios. That is, holding ratio constant, does difference influence choice? For this analysis, we split the data into the three ratios and calculated the mean percent choice for each difference within each subject ([@fig-diffratio]C). Using the `lmBF()` function from the _BayesFactor_ package [@R-BayesFactor], we calculated Bayes factors for the effect of difference for each ratio with subject as a random effect. We found Bayes factors of `r format_bf(extractBF(diff_bfs$"1:3")$bf)` for ratios of 0.33, `r format_bf(extractBF(diff_bfs$"1:2")$bf)` for ratios of 0.50 and `r format_bf(extractBF(diff_bfs$"2:3")$bf)` for ratios of 0.67. Thus, all Bayes factors were below our threshold for moderate evidence but were all greater than 1, suggesting weak evidence favoring the model with difference over the null model. These indeterminate findings are likely due to the small sample size of only `r length(complete_subjects)` subjects.
+
+We have evidence that, when controlling for ratio, only difference accounts for numerical preferences in our data set. To explore the generalizability of this finding, we analyzed other available dog quantity data sets. @Ward.Smuts.2007 published one of the first studies exploring dog food quantity preferences. In their first experiment, they offered 18 dogs one trial each of eight numerical pairs varying in difference and ratio (@fig-studypairs). Though the trial-by-trial data were not available, we extracted pair means from their plot of choice proportion versus ratio (their Figure 2) using WebPlotDigitizer [version 5.2, @WebPlotDigitizer]. @fig-studypairs shows slightly lower performance than in our current study, but this is not surprising given that the subjects in Ward & Smuts only experience one trial of each numerical pair. 
+
+@Ward.Smuts.2007 found that both difference and ratio influenced quantity preferences in their subjects. However, they ran only separate regressions, so they couldn't determine whether ratio influenced preference independent of difference. To test this, we performed a model comparison of difference-only, ratio-only, difference and ratio main effects, and difference and ratio with interaction linear regression models using their estimated numerical pair means. Bayes factors indicated that the difference-only model outperformed all other models (`r format_bf(ws_best_model$bf)`).
+
+
+```{r}
+#| label: fig-studypairs
+#| fig-cap: "Preferences for Numerical Pairs across Studies"
+#| 
+knitr::include_graphics("figures/all_study_pairs.png")
+```
+
+In addition to @Ward.Smuts.2007, we analyzed data from Study 1, Phase 1 of @Rivas-Blanco.etal.2020, who had 20 dogs experience a discrimination task in which they responded to which of two panels contain more or fewer items. After being trained on nine pairs of numbers with magnitudes between 1-8, subjects experienced four trials for each of 19 new pairs of unrewarded probe trials with ratios ranging between 0.33-0.88. Again, the performance was slightly lower than our current data (@fig-studypairs), but the subjects only experienced four trials of each pair. 
+
+Fortunately, @Rivas-Blanco.etal.2020 provided the trial-by-trial data with their study, so we could apply the same analysis used with our data. <!-- Like we found with our current data, the random effects model comparison found only numerical pair to be the best random effect. Using this,--> We conducted a model comparison of logistic regression models for difference-only, ratio-only, difference and ratio main effects, and difference and ratio with interaction effects on the binary correct/incorrect outcome variable. Bayes factors indicated that the difference-only model outperformed all other models (`r format_bf(rbd1_models$best_model$bf, cutoff = 10000)`).  
+
+Interestingly, Phase 2 of @Rivas-Blanco.etal.2020 included similar ratios as Phase 1 but magnitudes of 9-32 items. <!--Model comparison analysis again showed that numerical pairs alone are the best random effect but--> In contrast to our previous work, the ratio-only model performed best (`r format_bf(rbd2_models$best_model$bf, cutoff = 10000)`). 
+
+
+# Discussion
+
+Using a quantity preference task in dogs, we found that numerical difference better accounted for choices for the larger amounts of treats than numerical ratio. Due to the surprising nature of this finding, we analyzed two other data sets on dog quantitative judgments. In three of four data sets, when controlling for ratio, only difference accounted for choices. The only exception was in one data set where the numerical values ranged from 9-32 items. Thus, at small magnitudes, three different studies demonstrate an independent effect of difference but not ratio on quantitative judgments in dogs.
+
+## Implications
+
+A key finding across the study of animal quantity judgments has been the ratio effect; that is, the ratio between a pair of magnitudes influences the ability to discriminate or choose between them. Ratio dependence is a key hallmark of Weber's Law, and many studies have used ratio dependence as direct evidence of Weber's Law. 
+
+In one of the earliest studies on dog quantitative cognition, @Ward.Smuts.2007 found that numerical ratio explained reward preferences, which they posited as evidence for Weber’s Law. Since then, many other studies have found ratio dependence in dogs [@Baker.etal.2012; @MilettoPetrazzini.Wynne.2016; @Aulet.etal.2019; @Rivas-Blanco.etal.2020]. However, Ward and Smuts was the only study that also tested the effect of difference on quantitative cognition, and they found an effect of difference. Yet, they did not include both difference and ratio in the same model to control for each other. When we analyzed their summarized data with difference and ratio in the same model, we found that only difference (when controlling for ratio) accounted for their choices. We found similar effects in a re-analysis of @Rivas-Blanco.etal.2020 data for small magnitudes. This suggests that numerical difference may have been passed over in a rush to establish ratio effects and implicate Weber’s Law in dog quantitative cognition.
+
+This emphasis on ratio and Weber’s Law is not altogether unreasonable. Many studies across a wide range of species have found ratio effects. However, many of these studies did not test for difference effects at all, or if they did, they did not account for potential confounds with ratio. When researchers do test for independent effects of difference and ratio, the findings are mixed across studies. In some cases, ratio but not difference accounts for discrimination and preference [@Cantlon.Brannon.2006;@Buckingham.etal.2007;@Tomonaga.2008;@Tornick.etal.2015;@Wolff.etal.2024]. In other cases, both difference and ratio have independent effects on quantitative cognition [@Agrillo.etal.2007;@Hanus.Call.2007;@Kelly.2016]. Though we are not aware of cases outside of dogs where difference but not ratio drove choice, there are situations where neither difference nor ratio appear to be associated with performance [@Irie-Sugimoto.etal.2009;@Wolff.etal.2024]. However, given that only some studies include both difference and ratio in the same multiple regression, there is the possibility [as demonstrated in @Ward.Smuts.2007; @Rivas-Blanco.etal.2020] that this analysis would yield more cases in which difference accounts for performance.
+
+Do dogs really not use ratio when assessing quantities? <!--Are dogs different from other species tested?--> Well, yes and no. We present three independent data sets [our data, @Ward.Smuts.2007; @Rivas-Blanco.etal.2020] indicating that ratio plays no role beyond that of difference. This provides consistent evidence against ratio dependence in dogs at the tested magnitudes. We have not seen this in other species, but many studies of quantitative cognition do not (1) systematically vary both difference and ratio and (2) test both factors in the same multiple regression model. We hope this work encourages others to both systematically vary difference and ratio and analyze them in the same model. <!--Though it is possible that a unique evolutionary trajectory experienced by dogs could favor intriguing unique cognitive components [@Hare.Tomasello.2005; @Kubinyi.etal.2007], it is our view that other species might also show these effects---they just have not been tested properly and extensively.-->
+
+What does this mean for Weber's Law? These three data sets suggest that ratio dependence is a necessary but not sufficient criterion for demonstrating Weber's Law. That is, the true presence of Weber's Law governing quantitative cognition will result in ratio dependence. However, the presence of ratio dependence does not always imply Weber's Law unless other factors like numerical difference are taken into account. We propose that when testing for Weber's Law, researchers investigate other signatures of this principle such as scalar variability---variance in responses should increase with magnitude [@Meck.Church.1983]. While ratio dependence is a key component of Weber's Law, it also implies scalar variability. @Baker.etal.2012, for example, tested for ratio dependence (unfortunately, without including difference) in dogs but also directly tested for and found scalar variability. <!--Though some researchers assess scalar variability [e.g., @Emmerton.Renner.2006; @Ditz.Nieder.2016], this is not typically done and would provide complementary evidence for Weber's Law.-->
+
+Finally, though we found no evidence for ratio dependence in dogs across three data sets, all three of those studies used relatively low magnitudes of items to quantify (less than 10). In a fourth data set using larger magnitudes (greater than 8), our analysis showed ratio dependence and no difference effect. This makes sense as difference is not a feasible factor for quantity judgments at large magnitudes. Interestingly, this suggests that dogs may be using two different mechanisms for quantity judgments, depending on the magnitudes. There are other cases of different quantity judgment performance across small and large magnitudes in a range of species [@Hunt.etal.2008; @Agrillo.etal.2012]. Ratio dependence at higher magnitudes implies an _approximate number system_ that estimates quantities approximately. @Feigenson.etal.2002 provided evidence in human infants for an _object-file system_ that tracks number accurately at small magnitudes (regardless of ratio) but fails at larger magnitudes. The difference effect in our three dog data sets suggests a potential third mechanism for numerical judgments based on difference. Replication and more theoretical work are needed to validate the difference effect and propose a cognitive mechanism for its existence.
+
+
+## Considerations
+
+Though our results show promise for increasing attention to numerical difference in dog quantification tasks, other potential issues should be considered when interpreting our findings. A key consideration from our data set is that our experiment was conducted on a small sample of dogs. Because we wanted many repeated sessions with each subject, we opted to conduct this study at a dog daycare. Though we recruited `r length(unique(our_data$dog_id))` dogs, only `r length(complete_subjects)` completed all experimental sessions. However, what we lacked in sample size, we made up for in data per subject, with 10 trials for each numerical pair tested. Most previous studies on dog quantitative cognition run one to four trials per pair [@Ward.Smuts.2007: 1; @Baker.etal.2012: 1; @Rivas-Blanco.etal.2020: 4], though @MilettoPetrazzini.Wynne.2016 ran eight trials per pair. This may be problematic because, as our acquisition data shows, performance plateaus around four exposures to the pairs (@fig-acquisition). So aggregating data over the first four exposures results in lower performance and higher variance, and we recommend offering more exposures to numerical pairs for future studies. Therefore, though our sample size is small, inflating between-subject variance, our estimate of numerical judgments is more precise within subjects, reducing within-subject variance. To compensate for our small sample size, we analyzed two other data sets with larger sample sizes and found similar results across data sets. Nevertheless, replication with larger sample sizes is needed to validate these results.
+
+In addition to sample size, we also must consider the sample population. Most dog cognition studies recruit dog owners to bring their dogs into a research lab for studies. This already results in a specific subset of dogs, limited to those whose owners are able to bring their dogs in for testing [@Stevens.etal.2022]. Due to the repeated nature of testing for this study, we opted to test at a dog daycare, which could result in a different but similarly narrow subset of possible dogs from the population. The generalizability of our results may therefore be limited to certain subsets of dogs. However, again, we applied our analyses to two other data sets with different populations of dogs---@Ward.Smuts.2007 and @Rivas-Blanco.etal.2020 tested pet dogs that owners brought into the lab---and found the same results. Moreover, we expect that dogs may perform differently in different cultures due to variation in how guardians raise and interact with their dogs [@Stevens.etal.2022]. Yet, the Austrian sample from Rivas-Blanco et al. showed the same effects as our U.S. sample. So, though our population may be different from other studies, we find similar effects.
+
+Another important consideration in quantitative judgment studies is the type of task. Our study used a quantitative _preference_ task, where the subjects must not only discriminate a difference between two quantities but also exhibit a preference between them by presumably choosing the larger option [@Wolff.etal.2024]. This contrasts with a _discrimination_ task where subjects only have to discriminate between two quantities and get rewarded for choosing the correct option. Preference tasks may result in more variable data than discrimination tasks because, in addition to discrimination, subjects must be motivated to consume more rewards. Though subjects might be able to tell the difference between two quantities of food, they may not care enough to bother choosing the larger quantity. This difference in tasks is rarely recognized [but see @Agrillo.Bisazza.2014], but considering the cognitive processes involved in our tasks is critical to understanding animal cognitive abilities [@Mendelson.etal.2016]. Most studies of quantitative judgments in dogs use preference tasks. However, @Rivas-Blanco.etal.2020 used a discrimination task, and, as we have shown, applying our analysis to their data corroborates our finding of a difference effect but no ratio effect at small magnitudes. Thus, this finding has been demonstrated across both preference and discrimination tasks.
+
+A final consideration in any study of numerical difference and ratio is the fact that the two factors are highly correlated. Their interconnected nature makes it very difficult to statistically separate them as causal factors, since collinearity is a problem for regression analyses. One solution to this problem is to test for difference effects when holding ratio constant. In our study, we had three ratios with three differences within each ratio. We tested for difference effects within each ratio. Unfortunately, due to our small sample sizes, we didn't have enough power to properly test for difference effects. Going forward, we encourage researchers to systematically vary difference and ratio and use sample sizes large enough to run separate analyses on the different ratios.
+
+
+## Conclusion
+
+In a food preference task with dogs, we found that the numerical difference between quantities accounted for their quantitative judgments, but numerical ratio did not account for judgments independent of difference effects. This is surprising given the large number of studies in dogs and other species showing ratio-dependent quantity judgments. However, many other studies either do not test for difference effects at all or do not test them in the same models as ratio to control for confounding effects. When we apply this multiple regression analysis to two previously published data sets in dogs, we replicate our finding of an independent effect of difference but not ratio. This work calls into question the ubiquity of ratio dependence in quantity judgments and whether Weber's Law is as universal as it appears. Though Weber's Law certainly applies at large magnitudes, our data combined with the independent data sets suggest that another process could drive quantity judgments at lower magnitudes in dogs. We propose that more studies should systematically vary difference and ratio in their tasks and include both factors in their models to carefully assess the relative importance of both on quantity judgments. Though the difference effect has been demonstrated primarily in dogs, we see no reason why this should be unique to dogs, and we encourage researchers of other species to explore the role of difference in quantity judgments across species.
+
+
+# References
+\scriptsize
+
+::: {#refs}
+:::
+
+<!-- # Appendix -->
+
+<!-- # Title for Appendix -->

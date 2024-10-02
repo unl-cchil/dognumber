@@ -1,0 +1,26 @@
+variable,label,col_type,missing
+study,Study (Current Study or Rivas-Blanco et al. 2020),chr,0
+dog_id,Subject ID,chr,0
+date,Session date,dttm,80
+session,Session number (includes failed sessions),dbl,0
+block,Block number (only includes completed sessions),dbl,5111
+trial,Trial number,dbl,0
+pair,Numerical pair (small:large),chr,0
+small,Small amount,dbl,0
+large,Large amount,dbl,0
+diff,Numerical difference (large - small),dbl,0
+ratio,Numerical ratio (small / large),dbl,0
+large_side,Side of the large amount,chr,0
+choice_side,Side of chosen option,chr,5111
+choice,"Choice of larger amount (1 = large, 0 = small)",dbl,0
+recode_side,Side of recoded choice,chr,5886
+dog_age,Subject age,dbl,5111
+dog_sex,Subject sex,chr,152
+dog_neutered,"Sex neuter status (Yes = neutered/spayed, No = intact",chr,5111
+dog_weight,Subject weight,dbl,5111
+dias_overall,Dog Impulsivity Assessment Scale overall score,dbl,5111
+owner_age,Owner age,dbl,5111
+owner_gender,Owner gender,chr,5111
+owner_marital_status,Owner marital status,chr,5111
+employment_status,Owner employment status,chr,5111
+household_income,Owner household income,chr,5111
