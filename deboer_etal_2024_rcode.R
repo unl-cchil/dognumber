@@ -388,10 +388,6 @@ ratio_model1 <- glmer(choice ~ ratio + (1 | dog_id),
 diff_ratio_model1 <- glmer(choice ~ diff + ratio + (1 | dog_id),
                            family = binomial,
                            data = clean_data)
-diffxratio_model1 <- glmer(choice ~ diff * ratio + (1 | dog_id),
-                           family = binomial,
-                           data = clean_data)
-
 detritus::compare_models(null_model1, diff_model1, ratio_model1)
 
 diff_bf <- detritus::compare_models(diff_model1, diff_ratio_model1)
@@ -400,7 +396,14 @@ ratio_bf <- detritus::compare_models(ratio_model1, diff_ratio_model1)
 
 # Exploratory models ------------------------------------------------------
 
+# Evaluate frequentist model
+summary(diff_ratio_model1)
+
 # Add in interaction model
+diffxratio_model1 <- glmer(choice ~ diff * ratio + (1 | dog_id),
+                           family = binomial,
+                           data = clean_data)
+
 (all_models_bfs <- compare_diff_ratio_models(clean_data, rand = "+ (1 | dog_id)"))
 models_bfs <- all_models_bfs$models
 

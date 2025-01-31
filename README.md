@@ -2,7 +2,7 @@
 
 -   Created on 2024-09-23 by Jeffrey R. Stevens
     (<jeffrey.r.stevens@gmail.com>)
--   Finalized on 2024-10-02
+-   Finalized on 2025-01-31
 
 This repository provides the reproducible research materials for our
 project that investigates how dogs quantify amounts of food differently
@@ -18,8 +18,9 @@ available at [Open Science Framework](https://osf.io/tp8ah/):
 If you use any of these materials, please cite:
 
 > de Boer, H., Fitzpatrick, H., Wolff, L.M., Gatesy-Davis, A., &
-> Stevens, J.R. (2024). Do dogs follow Weber’s Law? The role of ratio
-> and difference in quantity preference. [doi:10.31234/osf.io/rn8gq](https://doi.org/10.31234/osf.io/rn8gq)
+> Stevens, J.R. (forthcoming). Do dogs follow Weber’s Law? The role of
+> ratio and difference in quantity preference. *Psychological Topics*.
+> [doi:10.31234/osf.io/rn8gq](https://doi.org/10.31234/osf.io/rn8gq)
 
 ## Summary
 
@@ -58,33 +59,33 @@ the license permits.
 
 `deboer_etal_2024_data.csv`
 
-| Variable             | Description                                           |
+| Variable | Description |
 |:--------------------|:--------------------------------------------------|
-| study                | Study (Current Study or Rivas-Blanco et al. 2020)     |
-| dog_id               | Subject ID                                            |
-| date                 | Session date                                          |
-| session              | Session number (includes failed sessions)             |
-| block                | Block number (only includes completed sessions)       |
-| trial                | Trial number                                          |
-| pair                 | Numerical pair (small:large)                          |
-| small                | Small amount                                          |
-| large                | Large amount                                          |
-| diff                 | Numerical difference (large - small)                  |
-| ratio                | Numerical ratio (small / large)                       |
-| large_side           | Side of the large amount                              |
-| choice_side          | Side of chosen option                                 |
-| choice               | Choice of larger amount (1 = large, 0 = small)        |
-| recode_side          | Side of recoded choice                                |
-| dog_age              | Subject age                                           |
-| dog_sex              | Subject sex                                           |
-| dog_neutered         | Sex neuter status (Yes = neutered/spayed, No = intact |
-| dog_weight           | Subject weight                                        |
-| dias_overall         | Dog Impulsivity Assessment Scale overall score        |
-| owner_age            | Owner age                                             |
-| owner_gender         | Owner gender                                          |
-| owner_marital_status | Owner marital status                                  |
-| employment_status    | Owner employment status                               |
-| household_income     | Owner household income                                |
+| study | Study (Current Study or Rivas-Blanco et al. 2020) |
+| dog_id | Subject ID |
+| date | Session date |
+| session | Session number (includes failed sessions) |
+| block | Block number (only includes completed sessions) |
+| trial | Trial number |
+| pair | Numerical pair (small:large) |
+| small | Small amount |
+| large | Large amount |
+| diff | Numerical difference (large - small) |
+| ratio | Numerical ratio (small / large) |
+| large_side | Side of the large amount |
+| choice_side | Side of chosen option |
+| choice | Choice of larger amount (1 = large, 0 = small) |
+| recode_side | Side of recoded choice |
+| dog_age | Subject age |
+| dog_sex | Subject sex |
+| dog_neutered | Sex neuter status (Yes = neutered/spayed, No = intact |
+| dog_weight | Subject weight |
+| dias_overall | Dog Impulsivity Assessment Scale overall score |
+| owner_age | Owner age |
+| owner_gender | Owner gender |
+| owner_marital_status | Owner marital status |
+| employment_status | Owner employment status |
+| household_income | Owner household income |
 
 ### R code
 
@@ -140,17 +141,19 @@ name
 description
 </td>
 <td>
-<code itemprop="description">The dataset from the paper <a href="https://doi.org/10.31234/osf.io/rn8gq">Do dogs follow Weber’s Law? The role of
-ratio and difference in quantity preference</a>. This study conducted 10
-sessions of a food quantity preference task with 7 dogs at Uplifting
-Paws dog daycare center in Lincoln, Nebraska from March-July 2023.
-Within each session dogs experienced one trial of each of nine 
-numerical pairs varying in their numerical difference (large-small) and 
-ratio (small/large) and two trials of a [1,6] ‘washout’ pair. In addition,
-the dataset includes data from [Rivas-Blanco et
-al. (2020)](https://doi.org/10.3389/fpsyg.2020.573317) on dog and wolf
-quantity discrimination. In the data file, each row represents the
-information and choice for a single trial for one subject.</code>
+<code itemprop="description">The dataset from the paper
+<a href="https://doi.org/10.31234/osf.io/rn8gq">Do dogs follow Weber’s
+Law? The role of ratio and difference in quantity preference</a>. This
+study conducted 10 sessions of a food quantity preference task with 7
+dogs at Uplifting Paws dog daycare center in Lincoln, Nebraska from
+March-July 2023. Within each session dogs experienced one trial of each
+of nine numerical pairs varying in their numerical difference
+(large-small) and ratio (small/large) and two trials of a \[1,6\]
+‘washout’ pair. In addition, the dataset includes data from
+[Rivas-Blanco et al. (2020)](https://doi.org/10.3389/fpsyg.2020.573317)
+on dog and wolf quantity discrimination. In the data file, each row
+represents the information and choice for a single trial for one
+subject.</code>
 </td>
 </tr>
 </tr>
@@ -159,7 +162,7 @@ information and choice for a single trial for one subject.</code>
 url
 </td>
 <td>
-<code itemprop="url">https://github.com/unl-cchil/dognumber</code>
+<code itemprop="url"><https://github.com/unl-cchil/dognumber></code>
 </td>
 </tr>
 <tr>
@@ -167,7 +170,7 @@ url
 sameAs
 </td>
 <td>
-<code itemprop="sameAs">https://github.com/unl-cchil/dognumber</code>
+<code itemprop="sameAs"><https://github.com/unl-cchil/dognumber></code>
 </td>
 </tr>
 <tr>
@@ -175,7 +178,7 @@ sameAs
 citation
 </td>
 <td>
-<code itemprop="citation">https://doi.org/10.31234/osf.io/rn8gq</code>
+<code itemprop="citation"><https://doi.org/10.31234/osf.io/rn8gq></code>
 </td>
 </tr>
 <tr>
@@ -206,7 +209,7 @@ name
 url
 </td>
 <td>
-<code itemprop="url">https://creativecommons.org/licenses/by-sa/4.0/</code>
+<code itemprop="url"><https://creativecommons.org/licenses/by-sa/4.0/></code>
 </td>
 </tr>
 </table>
