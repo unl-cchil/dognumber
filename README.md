@@ -162,7 +162,7 @@ subject.</code>
 url
 </td>
 <td>
-<code itemprop="url"><https://github.com/unl-cchil/dognumber></code>
+<code itemprop="url">https://github.com/unl-cchil/dognumber</code>
 </td>
 </tr>
 <tr>
@@ -170,7 +170,7 @@ url
 sameAs
 </td>
 <td>
-<code itemprop="sameAs"><https://github.com/unl-cchil/dognumber></code>
+<code itemprop="sameAs">https://github.com/unl-cchil/dognumber</code>
 </td>
 </tr>
 <tr>
@@ -178,7 +178,7 @@ sameAs
 citation
 </td>
 <td>
-<code itemprop="citation"><https://doi.org/10.31234/osf.io/rn8gq></code>
+<code itemprop="citation">https://doi.org/10.31234/osf.io/rn8gq</code>
 </td>
 </tr>
 <tr>
