@@ -59,6 +59,8 @@ the license permits.
 
 `deboer_etal_2024_data.csv`
 
+Data file has 6107 rows and 25 columns.
+
 | Variable | Description |
 |:--------------------|:--------------------------------------------------|
 | study | Study (Current Study or Rivas-Blanco et al. 2020) |
@@ -209,7 +211,7 @@ name
 url
 </td>
 <td>
-<code itemprop="url"><https://creativecommons.org/licenses/by-sa/4.0/></code>
+<code itemprop="url">https://creativecommons.org/licenses/by-sa/4.0/</code>
 </td>
 </tr>
 </table>
