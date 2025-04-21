@@ -2,7 +2,7 @@
 
 -   Created on 2024-09-23 by Jeffrey R. Stevens
     (<jeffrey.r.stevens@gmail.com>)
--   Finalized on 2025-01-31
+-   Finalized on 2025-04-21
 
 This repository provides the reproducible research materials for our
 project that investigates how dogs quantify amounts of food differently
@@ -19,8 +19,9 @@ If you use any of these materials, please cite:
 
 > de Boer, H., Fitzpatrick, H., Wolff, L.M., Gatesy-Davis, A., &
 > Stevens, J.R. (forthcoming). Do dogs follow Weber’s Law? The role of
-> ratio and difference in quantity preference. *Psychological Topics*.
-> [doi:10.31234/osf.io/rn8gq](https://doi.org/10.31234/osf.io/rn8gq)
+> ratio and difference in quantity preference. *Psychological Topics*,
+> 34(1), 117-137.
+> [doi:10.31820/pt.34.1.6](https://doi.org/10.31820/pt.34.1.6)
 
 ## Summary
 
@@ -144,18 +145,17 @@ description
 </td>
 <td>
 <code itemprop="description">The dataset from the paper
-<a href="https://doi.org/10.31234/osf.io/rn8gq">Do dogs follow Weber’s
-Law? The role of ratio and difference in quantity preference</a>. This
-study conducted 10 sessions of a food quantity preference task with 7
-dogs at Uplifting Paws dog daycare center in Lincoln, Nebraska from
-March-July 2023. Within each session dogs experienced one trial of each
-of nine numerical pairs varying in their numerical difference
-(large-small) and ratio (small/large) and two trials of a \[1,6\]
-‘washout’ pair. In addition, the dataset includes data from
-[Rivas-Blanco et al. (2020)](https://doi.org/10.3389/fpsyg.2020.573317)
-on dog and wolf quantity discrimination. In the data file, each row
-represents the information and choice for a single trial for one
-subject.</code>
+<a href="https://doi.org/10.31820/pt.34.1.6">Do dogs follow Weber’s Law?
+The role of ratio and difference in quantity preference</a>. This study
+conducted 10 sessions of a food quantity preference task with 7 dogs at
+Uplifting Paws dog daycare center in Lincoln, Nebraska from March-July
+2023. Within each session dogs experienced one trial of each of nine
+numerical pairs varying in their numerical difference (large-small) and
+ratio (small/large) and two trials of a \[1,6\] ‘washout’ pair. In
+addition, the dataset includes data from [Rivas-Blanco et
+al. (2020)](https://doi.org/10.3389/fpsyg.2020.573317) on dog and wolf
+quantity discrimination. In the data file, each row represents the
+information and choice for a single trial for one subject.</code>
 </td>
 </tr>
 </tr>
@@ -180,7 +180,7 @@ sameAs
 citation
 </td>
 <td>
-<code itemprop="citation">https://doi.org/10.31234/osf.io/rn8gq</code>
+<code itemprop="citation">https://doi.org/10.31820/pt.34.1.6</code>
 </td>
 </tr>
 <tr>

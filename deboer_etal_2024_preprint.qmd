@@ -71,7 +71,8 @@ author:
       - ref: unl
 author-note:
   status-changes: 
-    affiliation-change: "**This preprint has been accepted for publication at _Psychological Topics_.** Version: `r Sys.Date()`."
+    affiliation-change: "**This preprint has been published at _Psychological Topics_:** DeBoer, H., Fitzpatrick, H., Wolff, L. M., Gatesy-Davis, A., & Stevens, J. R. (2025). Do dogs follow Weber’s Law? The role of ratio and difference in quantity preference. _Psychological Topics_, 34(1), 117-137. doi:/10.31820/pt.34.1.6
+ Version: `r Sys.Date()`."
     deceased: ~
   disclosures:
     study-registration: This study was pre-registered at AsPredicted (<https://aspredicted.org/MX2_6L2>).
